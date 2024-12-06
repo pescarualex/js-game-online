@@ -13,67 +13,79 @@ let pcWins = 0;
 let even = 0;
 
 const pcChooses = ["rock", "paper", "scissors"];
+const userSelections = ["rock", "paper", "scissors"];
 
-rockBtn.onclick = rockScenario;
-paperBtn.onclick = paperScenario;
-scissorsBtn.onclick = scissorsScenario;
 
-function rockScenario(){
-    userResultImg.src = "../images/rock-emoji.png";
+    rockBtn.addEventListener('click', function(){
+        let computerMove = pickComputerMove(pcChooses);
 
-    if (pickComputerMove(pcChooses) === "rock") {
-        pcResultImg.src = "../images/rock-emoji.png";
-        even++;
-        evenText.innerText = "Even: " + even;
-    } else if (pickComputerMove(pcChooses) === "paper") {
-        pcResultImg.src = "../images/paper-emoji.png";
-        pcWins++;
-        pcScoreText.innerText = "PC Wins: " + pcWins;
+        if(userSelections[0] === "rock") {
+            userResultImg.src = "../images/rock-emoji.png";
 
-    } else if (pickComputerMove(pcChooses) === "scissors") {
-        pcResultImg.src = "../images/scissors-emoji.png";
-        userWins++;
-        userScoreText.innerText = "User Wins: " + userWins;
-    }
-}
+            if (computerMove === "rock") {
+                pcResultImg.src = "../images/rock-emoji.png";
+                even++;
+                evenText.innerText = "Even: " + even;
+            } else if (computerMove === "paper") {
+                pcResultImg.src = "../images/paper-emoji.png";
+                pcWins++;
+                pcScoreText.innerText = "PC Wins: " + pcWins;
 
-function paperScenario(){
-    userResultImg.src = "../images/paper-emoji.png";
+            } else if (computerMove === "scissors") {
+                pcResultImg.src = "../images/scissors-emoji.png";
+                userWins++;
+                userScoreText.innerText = "User Wins: " + userWins;
+            }
+        }
+    });
 
-    if (pickComputerMove(pcChooses) === "rock") {
-        pcResultImg.src = "../images/rock-emoji.png";
-        userWins++;
-        userScoreText.innerText = "User Wins: " + userWins;
-    } else if (pickComputerMove(pcChooses) === "paper") {
-        pcResultImg.src = "../images/paper-emoji.png";
-        even++;
-        evenText.innerText = "Even: " + even;
+    paperBtn.addEventListener('click', function(){
+        let computerMove = pickComputerMove(pcChooses);
 
-    } else if (pickComputerMove(pcChooses) === "scissors") {
-        pcResultImg.src = "../images/scissors-emoji.png";
-        pcWins++;
-        pcScoreText.innerText = "PC Wins: " + pcWins;
-    }
-}
+        if(userSelections[1] === "paper"){
+            userResultImg.src = "../images/paper-emoji.png";
 
-function scissorsScenario(){
-    userResultImg.src = "../images/scissors-emoji.png";
+            if (computerMove === "rock") {
+                pcResultImg.src = "../images/rock-emoji.png";
+                userWins++;
+                userScoreText.innerText = "User Wins: " + userWins;
+            } else if (computerMove === "paper") {
+                pcResultImg.src = "../images/paper-emoji.png";
+                even++;
+                evenText.innerText = "Even: " + even;
 
-    if (pickComputerMove(pcChooses) === "rock") {
-        pcResultImg.src = "../images/rock-emoji.png";
-        pcWins++;
-        pcScoreText.innerText = "PC Wins: " + pcWins;
-    } else if (pickComputerMove(pcChooses) === "paper") {
-        pcResultImg.src = "../images/paper-emoji.png";
-        userWins++;
-        userScoreText.innerText = "User Wins: " + userWins;
+            } else if (computerMove === "scissors") {
+                pcResultImg.src = "../images/scissors-emoji.png";
+                pcWins++;
+                pcScoreText.innerText = "PC Wins: " + pcWins;
+            }
+        }
+    });
 
-    } else if (pickComputerMove(pcChooses) === "scissors") {
-        pcResultImg.src = "../images/scissors-emoji.png";
-        even++;
-        evenText.innerText = "Even: " + even;
-    }
-}
+    scissorsBtn.addEventListener('click', function(){
+        let computerMove = pickComputerMove(pcChooses);
+
+        if(userSelections[2] === "scissors"){
+            userResultImg.src = "../images/scissors-emoji.png";
+
+            if (computerMove === "rock") {
+                pcResultImg.src = "../images/rock-emoji.png";
+                pcWins++;
+                pcScoreText.innerText = "PC Wins: " + pcWins;
+            } else if (computerMove === "paper") {
+                pcResultImg.src = "../images/paper-emoji.png";
+                userWins++;
+                userScoreText.innerText = "User Wins: " + userWins;
+
+            } else if (computerMove === "scissors") {
+                pcResultImg.src = "../images/scissors-emoji.png";
+                even++;
+                evenText.innerText = "Even: " + even;
+            }
+        }
+    });
+
+
 
 function pickComputerMove(computerMove) {
     const randomPick = Math.floor(Math.random() * computerMove.length);
